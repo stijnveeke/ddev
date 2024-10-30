@@ -89,6 +89,9 @@ RUN rm -f /etc/apt/sources.list.d/mysql.list && \
 # Make sure it's there in case user 999 (mysql) is using this image.
 RUN mkdir /home/mysql && chown mysql:mysql /home/mysql
 
+# Run init scripts.
+RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 EXPOSE 3306
